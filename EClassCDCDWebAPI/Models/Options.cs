@@ -12,7 +12,6 @@ namespace EClassCDCDWebAPI.Models
         public int? OptionOrder { get; set; }
         public string Value { get; set; }
         public double Mark { get; set; }
-
         public virtual Questions Question { get; set; }
     }
 }

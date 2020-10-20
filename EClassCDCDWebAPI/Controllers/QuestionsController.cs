@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EClassCDCDWebAPI.Models;
+using EClassCDCDWebAPI.ViewModels;
 
 namespace EClassCDCDWebAPI.Controllers
 {
@@ -22,9 +23,10 @@ namespace EClassCDCDWebAPI.Controllers
 
         // GET: api/Questions
         [HttpGet("Sv")]
-        public async Task<ActionResult<IEnumerable<Questions>>> GetQuestionsSv()
+        public async Task<List<Questions>> GetQuestionsSv()
         {
-            return await _context.Questions.Where(x=>x.CateId == "SV").ToListAsync();
+            var questions = await _context.Questions.Include(x=>x.Options).Where(x => x.CateId == "SV").ToListAsync();
+            return questions;
         }
         [HttpGet("Gv")]
         public async Task<ActionResult<IEnumerable<Questions>>> GetQuestionsGv()

@@ -21,10 +21,15 @@ namespace EClassCDCDWebAPI.Models
         public string Content { get; set; }
         public string Desciption { get; set; }
         public double? Mark { get; set; }
-
         public virtual Categories Cate { get; set; }
+
+
         public virtual Types Type { get; set; }
+
+
         public virtual ICollection<AnswerDetails> AnswerDetails { get; set; }
+
+
         public virtual ICollection<Options> Options { get; set; }
     }
 }

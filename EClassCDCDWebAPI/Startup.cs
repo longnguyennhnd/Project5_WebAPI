@@ -27,6 +27,9 @@ namespace EClassCDCDWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CoreDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("Database")));
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             services.AddControllers();
             
         }
