@@ -6,61 +6,53 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EClassCDCDWebAPI.Models;
-using EClassCDCDWebAPI.ViewModels;
 
 namespace EClassCDCDWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuestionsController : ControllerBase
+    public class AnswerDetailsController : ControllerBase
     {
         private readonly CoreDbContext _context;
 
-        public QuestionsController(CoreDbContext context)
+        public AnswerDetailsController(CoreDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Questions
-        [HttpGet("Sv")]
-        public async Task<List<Questions>> GetQuestionsSv()
+        // GET: api/AnswerDetails
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<AnswerDetails>>> GetAnswerDetails()
         {
-            var questions = await _context.Questions.Include(x=>x.Options).Where(x => x.CateId == "SV").ToListAsync();
-            return questions;
-        }
-        [HttpGet("Gv")]
-        public async Task<ActionResult<IEnumerable<Questions>>> GetQuestionsGv()
-        {
-            var questions = await _context.Questions.Include(x => x.Options).Where(x => x.CateId == "GV").ToListAsync();
-            return questions;
+            return await _context.AnswerDetails.ToListAsync();
         }
 
-        // GET: api/Questions/5
+        // GET: api/AnswerDetails/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Questions>> GetQuestions(int id)
+        public async Task<ActionResult<AnswerDetails>> GetAnswerDetails(Guid id)
         {
-            var questions = await _context.Questions.FindAsync(id);
+            var answerDetails = await _context.AnswerDetails.FindAsync(id);
 
-            if (questions == null)
+            if (answerDetails == null)
             {
                 return NotFound();
             }
 
-            return questions;
+            return answerDetails;
         }
 
-        // PUT: api/Questions/5
+        // PUT: api/AnswerDetails/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutQuestions(int id, Questions questions)
+        public async Task<IActionResult> PutAnswerDetails(Guid id, AnswerDetails answerDetails)
         {
-            if (id != questions.QuestionId)
+            if (id != answerDetails.AnswerId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(questions).State = EntityState.Modified;
+            _context.Entry(answerDetails).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +60,7 @@ namespace EClassCDCDWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!QuestionsExists(id))
+                if (!AnswerDetailsExists(id))
                 {
                     return NotFound();
                 }
@@ -81,20 +73,20 @@ namespace EClassCDCDWebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Questions
+        // POST: api/AnswerDetails
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Questions>> PostQuestions(Questions questions)
+        public async Task<ActionResult<AnswerDetails>> PostAnswerDetails(AnswerDetails answerDetails)
         {
-            _context.Questions.Add(questions);
+            _context.AnswerDetails.Add(answerDetails);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (QuestionsExists(questions.QuestionId))
+                if (AnswerDetailsExists(answerDetails.AnswerId))
                 {
                     return Conflict();
                 }
@@ -104,28 +96,28 @@ namespace EClassCDCDWebAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetQuestions", new { id = questions.QuestionId }, questions);
+            return CreatedAtAction("GetAnswerDetails", new { id = answerDetails.AnswerId }, answerDetails);
         }
 
-        // DELETE: api/Questions/5
+        // DELETE: api/AnswerDetails/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Questions>> DeleteQuestions(int id)
+        public async Task<ActionResult<AnswerDetails>> DeleteAnswerDetails(Guid id)
         {
-            var questions = await _context.Questions.FindAsync(id);
-            if (questions == null)
+            var answerDetails = await _context.AnswerDetails.FindAsync(id);
+            if (answerDetails == null)
             {
                 return NotFound();
             }
 
-            _context.Questions.Remove(questions);
+            _context.AnswerDetails.Remove(answerDetails);
             await _context.SaveChangesAsync();
 
-            return questions;
+            return answerDetails;
         }
 
-        private bool QuestionsExists(int id)
+        private bool AnswerDetailsExists(Guid id)
         {
-            return _context.Questions.Any(e => e.QuestionId == id);
+            return _context.AnswerDetails.Any(e => e.AnswerId == id);
         }
     }
 }
