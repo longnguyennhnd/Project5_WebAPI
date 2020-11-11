@@ -15,7 +15,6 @@ namespace EClassCDCDWebAPI.Models
         public string Password { get; set; }
         public string Role { get; set; }
         public string DepartmentId { get; set; }
-
         public virtual Departments Department { get; set; }
         public virtual ICollection<Permissions> Permissions { get; set; }
     }

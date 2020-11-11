@@ -24,14 +24,14 @@ namespace EClassCDCDWebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Plans>>> GetPlans()
         {
-            return await _context.Plans.Include(x=>x.Subject).Include(x=>x.Employee).ToListAsync();
+            return await _context.Plans.Include(x => x.Subject).Include(x => x.Employee).ToListAsync();
         }
 
         // GET: api/Plans/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPlans(int id)
         {
-            var plan = from t1 in _context.Plans.Include(x=>x.Subject).Include(x=>x.Employee)
+            var plan = from t1 in _context.Plans.Include(x => x.Subject).Include(x => x.Employee)
                        where t1.PlanId == id
                        select t1;
             return Ok(plan.First());

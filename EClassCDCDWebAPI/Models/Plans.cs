@@ -28,9 +28,13 @@ namespace EClassCDCDWebAPI.Models
         public string MarkCode { get; set; }
         public string Username { get; set; }
 
+
         public virtual Categories Cate { get; set; }
+
         public virtual Classes Class { get; set; }
+
         public virtual Employees Employee { get; set; }
+
         public virtual Subjects Subject { get; set; }
         public virtual ICollection<Answers> Answers { get; set; }
     }

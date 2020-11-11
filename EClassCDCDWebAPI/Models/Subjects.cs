@@ -16,15 +16,8 @@ namespace EClassCDCDWebAPI.Models
         public string SubjectName { get; set; }
         public int? Credit { get; set; }
         public string DepartmentId { get; set; }
-
-        [Newtonsoft.Json.JsonIgnore]
-        [System.Xml.Serialization.XmlIgnore]
         public virtual Departments Department { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-        [System.Xml.Serialization.XmlIgnore]
         public virtual ICollection<Plans> Plans { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-        [System.Xml.Serialization.XmlIgnore]
         public virtual ICollection<Scores> Scores { get; set; }
     }
 }

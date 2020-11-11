@@ -16,6 +16,7 @@ namespace EClassCDCDWebAPI.Models
         public string FacultyName { get; set; }
 
         public virtual ICollection<Departments> Departments { get; set; }
+
         public virtual ICollection<Permissions> Permissions { get; set; }
     }
 }

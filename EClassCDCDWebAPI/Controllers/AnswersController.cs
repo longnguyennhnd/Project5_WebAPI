@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EClassCDCDWebAPI.Models;
+using EClassCDCDWebAPI.ViewModels;
+using Newtonsoft.Json;
 
 namespace EClassCDCDWebAPI.Controllers
 {
@@ -77,26 +79,33 @@ namespace EClassCDCDWebAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Answers>> PostAnswers(Answers answers)
+        public async Task<ActionResult<int>> PostAnswers(AnswerViewModel answerViewModel)
         {
-            _context.Answers.Add(answers);
-            try
+            DateTime now = DateTime.Now;
+            Guid guid = Guid.NewGuid();
+            string[] values = JsonConvert.DeserializeObject<string[]>(answerViewModel.value);
+            int[]quesids = JsonConvert.DeserializeObject<int[]>(answerViewModel.questionId);
+            Answers answers = new Answers()
             {
+                AnswerId = guid,
+                StudentId = "181MNA001",
+                PlanId = answerViewModel.PlanID,
+                Time = now
+            };
+            _context.Answers.Add(answers);
+            var res = await _context.SaveChangesAsync();
+            for(int i = 0; i < quesids.Length; ++i)
+            {
+                AnswerDetails answerDetails = new AnswerDetails()
+                {
+                    AnswerId = answers.AnswerId,
+                    QuestionId = quesids[i],
+                    Value = values[i]
+                };
+                _context.AnswerDetails.Add(answerDetails);
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException)
-            {
-                if (AnswersExists(answers.AnswerId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetAnswers", new { id = answers.AnswerId }, answers);
+            return res;
         }
 
         // DELETE: api/Answers/5

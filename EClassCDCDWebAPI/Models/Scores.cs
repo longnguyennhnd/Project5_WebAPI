@@ -15,7 +15,6 @@ namespace EClassCDCDWebAPI.Models
         public string Note { get; set; }
         public DateTime? LastUpdate { get; set; }
         public int? PlanId { get; set; }
-
         public virtual Students Student { get; set; }
         public virtual Subjects Subject { get; set; }
     }

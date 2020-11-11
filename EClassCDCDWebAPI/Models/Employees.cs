@@ -22,15 +22,8 @@ namespace EClassCDCDWebAPI.Models
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
         public string Photo { get; set; }
-
-        [Newtonsoft.Json.JsonIgnore]
-        [System.Xml.Serialization.XmlIgnore]
         public virtual Departments Department { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-        [System.Xml.Serialization.XmlIgnore]
         public virtual ICollection<Classes> Classes { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-        [System.Xml.Serialization.XmlIgnore]
         public virtual ICollection<Plans> Plans { get; set; }
     }
 }

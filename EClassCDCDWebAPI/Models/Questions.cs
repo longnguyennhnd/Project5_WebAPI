@@ -23,12 +23,9 @@ namespace EClassCDCDWebAPI.Models
         public double? Mark { get; set; }
         public virtual Categories Cate { get; set; }
 
-
         public virtual Types Type { get; set; }
 
-
         public virtual ICollection<AnswerDetails> AnswerDetails { get; set; }
-
 
         public virtual ICollection<Options> Options { get; set; }
     }
