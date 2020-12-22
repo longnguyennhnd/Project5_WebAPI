@@ -36,7 +36,24 @@ namespace EClassCDCDWebAPI.Controllers
                        select t1;
             return Ok(plan.First());
         }
+        
+        [HttpGet("getPlanByClass")]
+        public async Task<IActionResult> GetPlansByClass(string classID)
+        {
+            var plan = from t1 in _context.Plans.Include(x => x.Subject).Include(x => x.Employee)
+                       where t1.ClassId == classID
+                       select t1;
+            return Ok(plan.ToList());
+        }
 
+        [HttpGet("seach")]
+        public async Task<IActionResult> Search(string keyword)
+        {
+            var plan = from t1 in _context.Plans.Include(x => x.Subject).Include(x => x.Employee)
+                       where t1.Subject.SubjectName.Contains(keyword)
+                       select t1;
+            return Ok(plan.First());
+        }
         // PUT: api/Plans/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

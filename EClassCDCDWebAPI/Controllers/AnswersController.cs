@@ -43,6 +43,12 @@ namespace EClassCDCDWebAPI.Controllers
             return answers;
         }
 
+        [HttpGet("Checked/{studentId}")]
+        public ActionResult Checked(string studentId)
+        {
+            var answers = _context.Answers.Where(s =>s.StudentId == studentId ).ToList();
+            return Ok(answers);
+        }
         // PUT: api/Answers/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

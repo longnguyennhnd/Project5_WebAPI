@@ -1,6 +1,5 @@
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\bin\Debug\netcoreapp3.1\appsettings.json
-E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\bin\Debug\netcoreapp3.1\EClassCDCDWebAPI.exe
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\obj\Debug\netcoreapp3.1\EClassCDCDWebAPI.csprojAssemblyReference.cache
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\obj\Debug\netcoreapp3.1\EClassCDCDWebAPI.AssemblyInfoInputs.cache
@@ -159,3 +158,4 @@ E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\bin\Debug\netcoreapp3.1\Microsoft.
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\obj\Debug\netcoreapp3.1\EClassCDCDWebAPI.csproj.CoreCompileInputs.cache
 E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\obj\Debug\netcoreapp3.1\EClassCDCDWebAPI.MvcApplicationPartsAssemblyInfo.cache
+E:\Projects\EClassCDCDWebAPI\EClassCDCDWebAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\EClassCDCDWebAPI.styles.css

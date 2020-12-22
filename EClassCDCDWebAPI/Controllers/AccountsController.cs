@@ -128,9 +128,9 @@ namespace EClassCDCDWebAPI.Controllers
 
         [HttpPost]
         [Route("login")]
+        //post
         public async Task<IActionResult> Login(Students account)
         {
-
             var user = await _context.Students.Where(x => x.StudentId == account.StudentId && x.Password == account.Password).SingleOrDefaultAsync();
             if (user != null)
             {
@@ -149,7 +149,7 @@ namespace EClassCDCDWebAPI.Controllers
                 var token = tokenHandler.WriteToken(securityToken);
                 return Ok(new
                 {
-                    studentId = user.StudentId,
+                    employeeId = user.StudentId,
                     password = user.Password,
                     fullName = user.FullName,
                     gender = user.Gender,
@@ -158,7 +158,7 @@ namespace EClassCDCDWebAPI.Controllers
                     email = user.Email,
                     phoneNumber = user.PhoneNumber,
                     photo = user.Photo,
-                    classId = user.ClassId,
+                    ClassId = user.ClassId,
                     token
                 });
             }
