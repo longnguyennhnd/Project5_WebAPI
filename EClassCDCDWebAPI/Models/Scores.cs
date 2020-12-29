@@ -17,5 +17,6 @@ namespace EClassCDCDWebAPI.Models
         public int? PlanId { get; set; }
         public virtual Students Student { get; set; }
         public virtual Subjects Subject { get; set; }
+        public virtual Plans Plan { get; set; }
     }
 }

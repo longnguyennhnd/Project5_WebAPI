@@ -10,6 +10,7 @@ namespace EClassCDCDWebAPI.ViewModels
         public string AnswerID { get; set; }
         public string StudentID { get; set; }
         public int PlanID { get; set; }
+        public string nhanxet { get; set; }
         public string Time { get; set; }
         public string value { get; set; }
         public string questionId { get; set; }

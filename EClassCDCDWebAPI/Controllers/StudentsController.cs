@@ -44,7 +44,7 @@ namespace EClassCDCDWebAPI.Controllers
         // PUT: api/Students/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("Put/{id}")]
         public async Task<IActionResult> PutStudents(string id, Students students)
         {
             if (id != students.StudentId)

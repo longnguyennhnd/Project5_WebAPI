@@ -33,14 +33,6 @@ namespace EClassCDCDWebAPI.Controllers
             var score = _context.Scores.Where(s => s.StudentId == studentId && s.SubjectId == subjectId).FirstOrDefault();
             return Ok(score);
         }
-
-
-        [HttpGet("GetScoresStudent/{studentId}")]
-        public ActionResult GetSccoresStudent(string studentId)
-        {
-            var score = _context.Scores.Where(s => s.StudentId == studentId).ToList();
-            return Ok(score);
-        }
         // POST api/<ScoresController>
         [HttpPost]
         public void Post([FromBody] string value)

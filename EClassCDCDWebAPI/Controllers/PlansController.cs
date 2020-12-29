@@ -46,6 +46,18 @@ namespace EClassCDCDWebAPI.Controllers
             return Ok(plan.ToList());
         }
 
+        [HttpGet("getPlanYear/classID/{semester}/{year}")]
+        public async Task<IActionResult> getPlanYear(string classID,int semester, string year)
+        {
+            var plan = from t1 in _context.Plans.Include(x => x.Subject).Include(x => x.Employee)
+                       where t1.ClassId == classID && t1.Semester == semester && t1.Year == year
+                       select t1;
+            return Ok(plan.ToList());
+        }
+
+
+
+
         [HttpGet("seach")]
         public async Task<IActionResult> Search(string keyword)
         {
@@ -53,6 +65,15 @@ namespace EClassCDCDWebAPI.Controllers
                        where t1.Subject.SubjectName.Contains(keyword)
                        select t1;
             return Ok(plan.First());
+        }
+
+        [HttpGet("GetScoresStudent/{studentId}")]
+        public async Task<IActionResult> GetScoresStudent(string studentId)
+        {
+            var plan = from t1 in _context.Scores.Include(x => x.Subject).Include(x=>x.Plan).Include(x=>x.Student)
+                       where t1.StudentId == studentId
+                       select t1;
+            return Ok(plan.ToList());
         }
         // PUT: api/Plans/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

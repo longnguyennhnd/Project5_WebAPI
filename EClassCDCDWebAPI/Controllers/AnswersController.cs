@@ -94,7 +94,7 @@ namespace EClassCDCDWebAPI.Controllers
             Answers answers = new Answers()
             {
                 AnswerId = guid,
-                StudentId = "181MNA001",
+                StudentId = answerViewModel.StudentID,
                 PlanId = answerViewModel.PlanID,
                 Time = now
             };
@@ -111,6 +111,14 @@ namespace EClassCDCDWebAPI.Controllers
                 _context.AnswerDetails.Add(answerDetails);
                 await _context.SaveChangesAsync();
             }
+            AnswerDetails answerDetails1 = new AnswerDetails()
+            {
+                AnswerId = answers.AnswerId,
+                QuestionId = quesids.Length + 1,
+                Value = answerViewModel.nhanxet
+            };
+            _context.AnswerDetails.Add(answerDetails1);
+            await _context.SaveChangesAsync();
             return res;
         }
 
